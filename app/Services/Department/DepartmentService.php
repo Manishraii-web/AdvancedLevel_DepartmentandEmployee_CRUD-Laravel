@@ -9,7 +9,7 @@ class DepartmentService
      */
     public function __construct(protected Department $department) { }
 //---------------------------------------------------------------------------------------------
-    public function getall(){
+    public function getAll(){
         return $this->department
         ->when(request('search'), function($query){
             $query->where('name', 'like', '%'.request('search').'%');

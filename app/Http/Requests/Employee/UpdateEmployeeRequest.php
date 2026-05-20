@@ -29,7 +29,6 @@ class UpdateEmployeeRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'unique:employees,email',
                 Rule::unique('employees')->ignore($this->employee)
             ],
             'phone' => "required|string|max:20",

@@ -16,7 +16,7 @@ class EmployeeController extends Controller
     public function __construct(protected EmployeeService $employeeService) {}
     public function index()
     {
-        $employees = $this->employeeService->getall();
+        $employees = $this->employeeService->getAll();
         return view('employee.index', compact('employees'));
     }
 
@@ -27,7 +27,7 @@ class EmployeeController extends Controller
 
     public function store(StoreEmployeeRequest $request){
         $this->employeeService->store($request->validated());
-        return redirect()->route('employee.index')->with('success', 'Employee created successfully');
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully');
     }
 
     public function edit(Employee $employee){
@@ -37,11 +37,11 @@ class EmployeeController extends Controller
 
     public function update(UpdateEmployeeRequest $request, Employee $employee){
         $this->employeeService->update($employee, $request->validated());
-        return redirect()->route('employee.index')->with('success', 'Employee updated successfully');
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
 
     public function  destroy(Employee $employee){
         $this->employeeService->delete($employee);
-        return redirect()->route('employee.index')->with('success', 'Employee deleted successfully');
+        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
     }
 }

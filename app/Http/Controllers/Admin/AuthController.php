@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\Request;
 use App\Services\Admin\AuthService;
 
+
 class AuthController extends Controller
 {
     public function __construct(protected AuthService $authService){}
@@ -39,6 +40,10 @@ class AuthController extends Controller
     public function logout(){
         $this->authService->logout();
         return redirect()->route('login');
+    }
+
+    public function dashboard() {
+        return view('admin.dashboard');
     }
 
 
