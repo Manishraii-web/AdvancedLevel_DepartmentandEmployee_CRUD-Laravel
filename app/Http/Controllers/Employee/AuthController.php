@@ -3,50 +3,110 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\Department;
+use App\Models\Employee;
+
+use App\Services\Employee\AuthService;
+
 use App\Http\Requests\Auth\EmployeeLoginRequest;
 use App\Http\Requests\Auth\EmployeeRegisterRequest;
-use App\Models\Employee;
-use App\Services\Admin\AuthService;
-use App\Services\Employee\AuthSerivce;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function __construct(protected AuthService $authService) {}
-//-------------------------------------------------------------------------------------------
+    protected AuthService $authService;
+
+    public function __construct(
+        AuthService $authService
+    ) {
+        $this->authService = $authService;
+    }
+
+    /**
+     * Login Page
+     */
     public function showLogin()
     {
         return view('employee-auth.login');
     }
-//---------------------------------------------------------------------------------------------
+
+    /**
+     * Register Page
+     */
     public function showRegister()
     {
-        return view('employee-auth.register');
+        $departments = Department::all();
+
+        return view(
+            'employee-auth.register',
+            compact('departments')
+        );
     }
-//----------------------------------------------------------------------------------------------
-    public function register(EmployeeRegisterRequest $request)
-    {
-        $this->authService->register($request->validated());
-        return redirect()->route('employee.login')->with('success', 'Login succccesffull');
+
+    /**
+     * Register Employee
+     */
+    public function register(
+        EmployeeRegisterRequest $request
+    ) {
+
+        $this->authService->register(
+            $request->validated()
+        );
+
+        return redirect()
+            ->route('employee.login')
+            ->with(
+                'success',
+                'Registration submitted. Wait for admin approval.'
+            );
     }
-//------------------------------------------------------------------------------------------------
-    public function login(EmployeeLoginRequest $request){
-        $employee = Employee::where('email', $request->email)->first();
+
+    /**
+     * Login Employee
+     */
+    public function login(
+        EmployeeLoginRequest $request
+    ) {
+
+        $employee = Employee::where(
+            'email',
+            $request->email
+        )->first();
 
         if ($employee && !$employee->is_approved) {
-            return back()->withErrors(['email' => 'Waiting for admin approval first']);
+
+            return back()->withErrors([
+                'email' => 'Waiting for admin approval.'
+            ]);
         }
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only(
+            'email',
+            'password'
+        );
 
-        if ($this->authService->login($credentials)) {
-            return redirect()->route('admin.dashboardi');
+        if (
+            $this->authService->login($credentials)
+        ) {
+            return redirect()
+                ->route('employee.dashboard');
+
         }
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        return back()->withErrors([
+
+            'email' => 'Invalid credentials'
+
+        ]);
     }
-    //------------------------------------------------------------------------------------------
-    public function logout(){
+
+    /**
+     * Logout
+     */
+    public function logout()
+    {
         $this->authService->logout();
-        return redirect('employee.login');
+        return redirect()
+            ->route('employee.login');
     }
 }

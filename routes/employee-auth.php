@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Employee\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,7 +16,7 @@ Route::middleware('auth:employee')->group(function(){
     Route::post('/employee/logout',[AuthController::class,'logout'])->name('employee.logout');
     Route::get('employee/dashboard',function(){
         return 'Employee Dashboard';
-    }) ->name('employee.dashbaord');
+    }) ->name('employee.dashboard');
 
 });
 

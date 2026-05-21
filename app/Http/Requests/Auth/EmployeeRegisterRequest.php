@@ -26,7 +26,10 @@ class EmployeeRegisterRequest extends FormRequest
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|email|unique:employees,email',
-            'password' =>'required|min:6|confirmed',
+            'password' => 'required|min:6|confirmed',
+            'department_id' => 'required|exists:departments,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'phone' => 'required|string|max:13',
         ];
     }
 }

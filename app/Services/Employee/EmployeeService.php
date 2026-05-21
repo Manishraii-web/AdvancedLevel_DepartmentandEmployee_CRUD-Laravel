@@ -14,8 +14,10 @@ class EmployeeService
     public function getall()
     {
         return $this->employee
+        ->where('is_approved', true)
             ->when(request('search'), function ($query) {
-                $query->where('name', 'like', '%' . request('search') . '%')
+                $query->where('firstname', 'like', '%' . request('search') . '%')
+                     ->orwhere('lastname', 'like', '%' . request('search'). '%')
                     ->orWhere('email', 'like', '%' . request('search') . '%');
             })
             ->orderBy('created_at', 'asc')

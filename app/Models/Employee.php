@@ -20,6 +20,8 @@ class Employee extends Authenticatable
     'department_id',
     'salary',
     'image',
+    'password',
+    'is_approved',
 
    ];
     protected $hidden = ['password',];
