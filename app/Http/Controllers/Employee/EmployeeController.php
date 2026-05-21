@@ -35,10 +35,10 @@ class EmployeeController extends Controller
         return view('employee.edit', compact('employee', 'departments'));
     }
 
-    // public function update(UpdateEmployeeRequest $request, Employee $employee){
-    //     $this->employeeService->update($employee, $request->validated());
-    //     return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
-    // }
+    public function update(UpdateEmployeeRequest $request, Employee $employee){
+        $this->employeeService->update($employee, $request->validated());
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
+    }
 
     public function pending(){
         $employees = $this->employeeService->getPendingEmployees();
