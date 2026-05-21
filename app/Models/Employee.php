@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Auth\Middleware\Authenticate;
+// use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
    use SoftDeletes;
 
@@ -18,7 +20,9 @@ class Employee extends Model
     'department_id',
     'salary',
     'image',
+
    ];
+    protected $hidden = ['password',];
 
    public function department(){
     return $this->belongsTo(Department::class);

@@ -17,6 +17,6 @@ Route::middleware('auth:admin')->group(function(){
 
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
-Route::get('/dashboard',[AuthController::class,'dashboard'])->name('admin.dashboard');
+Route::get('/dashboard',[AuthController::class,'dashboard'])->name('admin.dashboardi');
 });
 

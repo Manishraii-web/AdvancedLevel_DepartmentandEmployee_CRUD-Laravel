@@ -18,6 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
 
         Route::middleware('web')
             ->group(base_path('routes/department.php'));
+
+        Route::middleware('web')->group(base_path('routes/employee-auth.php'));
     },
 )
     ->withMiddleware(function (Middleware $middleware): void {

@@ -44,7 +44,7 @@
 
             <h4>Departments</h4>
 
-            <a href="{{ route('departments.index') }}"
+            <a href="{{ route('departmenty.index') }}"
                class="btn btn-success mt-3">
 
                 Manage Departments
@@ -56,5 +56,11 @@
     </div>
 
 </div>
+<a href="{{ route('employees.pending') }}"
+   class="btn btn-warning mt-3">
+
+    Pending Employee Requests
+
+</a>
 
 @endsection

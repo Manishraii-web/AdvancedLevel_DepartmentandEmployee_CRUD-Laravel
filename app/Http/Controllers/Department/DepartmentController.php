@@ -25,7 +25,7 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request){
         $this->departmentService->store($request->validated());
 
-        return redirect()->route('departments.index')->with('success','Congo');
+        return redirect()->route('departmenty.index')->with('success','Congo');
 
     }
     public function edit(Department $department){
@@ -35,13 +35,13 @@ class DepartmentController extends Controller
 
     public function update(UpdateDepartmentRequest $request, Department $department){
         $this->departmentService->update($department, $request->validated());
-        return redirect()-> route('departments.index')->with('success','Sucessfully!!!');
+        return redirect()-> route('departmenty.index')->with('success','Sucessfully!!!');
 
 
     }
 
     public function destroy(Department $department){
         $this->departmentService->delete($department);
-        return redirect()->route('departments.index')->with('success','delting sucess');
+        return redirect()->route('departmenty.index')->with('success','delting sucess');
     }
 }

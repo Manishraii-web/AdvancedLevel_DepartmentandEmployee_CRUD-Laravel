@@ -40,6 +40,16 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
 
+    public function pending(){
+        $employees = $this->employeeService->getPendingEmployees();
+        return view('employee.pending', compact('employees'));
+    }
+
+    public function approve(Employee $employee){
+        $this->employeeService->approve($employee);
+        return redirect()->back()->with('succcess','Employee approved.!!!');
+    }
+
     public function  destroy(Employee $employee){
         $this->employeeService->delete($employee);
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
