@@ -32,17 +32,11 @@ class AuthService
         return $this->employee->create([
 
             'firstname' => $data['firstname'],
-
             'lastname' => $data['lastname'],
-
             'email' => $data['email'],
-
             'phone' => $data['phone'],
-
             'department_id' => $data['department_id'],
-
             'image' => $data['image'] ?? null,
-
             'password' => Hash::make(
                 $data['password']
             ),
