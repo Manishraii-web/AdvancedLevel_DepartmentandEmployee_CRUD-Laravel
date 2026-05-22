@@ -20,7 +20,7 @@
 
                 <h3>Admin</h3>
 
-                <a href="{{ route('login') }}"
+                <a href="{{ route('admin.login') }}"
                    class="btn btn-primary mt-3">
 
                     Admin Login

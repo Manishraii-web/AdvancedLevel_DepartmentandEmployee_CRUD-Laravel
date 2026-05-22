@@ -47,7 +47,7 @@ class EmployeeController extends Controller
 
     public function approve(Employee $employee){
         $this->employeeService->approve($employee);
-        return redirect()->back()->with('succcess','Employee approved.!!!');
+        return redirect()->back()->with('success','Employee approved.!!!');
     }
 
     public function  destroy(Employee $employee){

@@ -13,10 +13,24 @@ class AuthService
        $this->admin = $admin;
    }
 
-   public function login(array $credentials): bool
-   {
-    return Auth::guard('admin')->attempt($credentials);
-   }
+  public function login(array $credentials): bool
+{
+    if (Auth::guard('employee')->attempt($credentials)) {
+
+        $employee = Auth::guard('employee')->user();
+
+        if (!$employee->is_approved) {
+
+            Auth::guard('employee')->logout();
+
+            return false;
+        }
+
+        return true;
+    }
+
+    return false;
+}
 
    public function register(array $data) : Admin {
     return $this->admin->create([

@@ -18,8 +18,4 @@ Route::put(
 
     Route::resource('employees', EmployeeController::class);
 
-
-
-
-
 });

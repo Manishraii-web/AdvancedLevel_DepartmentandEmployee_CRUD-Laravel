@@ -15,7 +15,7 @@
             <div class="card-body">
 
                 <form method="POST"
-                      action="{{ route('login.submit') }}">
+                      action="{{ route('admin.login.submit') }}">
 
                     @csrf
 

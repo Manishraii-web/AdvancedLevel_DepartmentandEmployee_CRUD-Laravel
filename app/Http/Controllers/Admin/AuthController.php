@@ -28,7 +28,7 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request){
         $this->authService->register($request->validated());
-        return redirect()->route('login');
+        return redirect()->route('admin.login');
 
     }
 
@@ -39,7 +39,7 @@ class AuthController extends Controller
 
     public function logout(){
         $this->authService->logout();
-        return redirect()->route('login');
+        return redirect()->route('admin.login');
     }
 
     public function dashboard() {

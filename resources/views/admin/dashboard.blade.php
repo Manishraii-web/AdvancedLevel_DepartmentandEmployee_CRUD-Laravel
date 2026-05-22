@@ -7,7 +7,7 @@
     <h2>Admin Dashboard</h2>
 
     <form method="POST"
-          action="{{ route('logout') }}">
+          action="{{ route('admin.logout') }}">
 
         @csrf
 
