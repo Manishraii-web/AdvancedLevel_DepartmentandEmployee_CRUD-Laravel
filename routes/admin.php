@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Auth;
 
-Route::prefix('admin')->group(function () {
+
 Route::middleware('guest:admin')->group(function(){
 
  Route::get('/login', [AuthController::class,'showLogin'])->name('admin.login');
@@ -21,4 +21,4 @@ Route::post('/logout',[AuthController::class,'logout'])->name('admin.logout');
 Route::get('/dashboard',[AuthController::class,'dashboard'])->name('admin.dashboardi');
 });
 
-});
+

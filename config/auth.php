@@ -17,8 +17,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admin',
-        'passwords' => 'admins',
+        'guard' => 'web',
+        'passwords' => 'users',
     ],
 
     /*
@@ -39,10 +39,10 @@ return [
     */
 
     'guards' => [
-    //     'web' => [
-    //     'driver' => 'session',
-    //     'provider' => 'users',
-    // ],
+        'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
+    ],
 
     'admin' => [
         'driver' => 'session',
@@ -84,10 +84,10 @@ return [
             'model'=>Employee::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
 
     /*
