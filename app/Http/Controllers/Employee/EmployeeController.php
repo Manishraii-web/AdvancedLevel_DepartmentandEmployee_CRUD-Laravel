@@ -54,4 +54,9 @@ class EmployeeController extends Controller
         $this->employeeService->delete($employee);
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
     }
+
+    public function employeeDashboard(){
+        $employees = $this->employeeService->getAll();
+        return view('employee.dashboard', compact('employees'));
+    }
 }

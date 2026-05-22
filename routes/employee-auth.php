@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Employee\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Employee\EmployeeController;
+
 
 Route::get(
     '/employee/login',
@@ -34,3 +36,8 @@ Route::get(
         return 'Employee Dashboard';
     }
 )->name('employee.dashboard');
+
+Route::get(
+    '/employee/dashboard', [EmployeeController::class,'employeeDashboard'])->name('employee.dashboard');
+
+
