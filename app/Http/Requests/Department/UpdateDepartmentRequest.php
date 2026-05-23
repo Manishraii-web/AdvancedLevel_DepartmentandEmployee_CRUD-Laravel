@@ -24,13 +24,19 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'name' => [
-            'nullable',
-            'string',
-            'max:255',
+            'name' => [
+                'nullable',
+                'string',
+                'max:255',
 
-            Rule::unique('departments', 'name')->ignore($this->department),
-           ]
+                Rule::notIn([
+                    'Kaijoku',
+                    'ChosenOne',
+                    'Kakarot'
+                ]),
+
+                Rule::unique('departments', 'name')->ignore($this->department),
+            ]
         ];
     }
 }
