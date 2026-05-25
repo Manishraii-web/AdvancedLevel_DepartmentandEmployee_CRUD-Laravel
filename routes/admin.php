@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Auth;
 
 
- Route::get('/login', [AuthController::class,'showLogin'])->name('login');
+ Route::get('/login', [AuthController::class,'showLogin'])->name('admin.login');
 
 
 Route::middleware('guest:admin')->group(function(){
@@ -13,7 +13,7 @@ Route::post('/login',[AuthController::class,'login'])->name('admin.login.submit'
 
 });
 
-Route::middleware('auth:admin')->group(function(){
+Route::middleware('admin.auth')->group(function(){
 
 
 Route::get('/register',[AuthController::class,'showRegister'])->name('admin.register');

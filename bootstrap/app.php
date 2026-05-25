@@ -23,8 +23,12 @@ return Application::configure(basePath: dirname(__DIR__))
             ->group(base_path('routes/employee-auth.php'));
     },
 )
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'admin.auth' => \App\Http\Middleware\AdminAuthenticate::class,
+
+            'employee.auth' => \App\Http\Middleware\EmployeeAuthenticate::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

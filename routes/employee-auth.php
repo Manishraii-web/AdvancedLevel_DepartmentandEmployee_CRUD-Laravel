@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\EmployeeController;
 
 
+Route::middleware('guest:employee')->group(function() {
 Route::get(
     '/employee/login',
     [AuthController::class,'showLogin']
@@ -25,19 +26,17 @@ Route::post(
     [AuthController::class,'register']
 )->name('employee.register.submit');
 
+ });
+
+Route::middleware('employee.auth')->group(function() {
 Route::post(
     '/employee/logout',
     [AuthController::class,'logout']
 )->name('employee.logout');
 
-Route::get(
-    'employee/dashboard',
-    function () {
-        return 'Employee Dashboard';
-    }
-)->name('employee.dashboard');
 
 Route::get(
     '/employee/dashboard', [EmployeeController::class,'employeeDashboard'])->name('employee.dashboard');
 
 
+});

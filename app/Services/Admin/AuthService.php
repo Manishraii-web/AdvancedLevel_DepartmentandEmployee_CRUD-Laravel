@@ -24,7 +24,7 @@ class AuthService
     public function register(
         array $data
     ) {
-        if(Auth::guard('admin')->check()){
+
 
         return $this->admin->create([
 
@@ -36,9 +36,7 @@ class AuthService
                 $data['password']
             ),
         ]);
-    } else {
-        return redirect()->route('admin.login');
-    }
+
     }
 
 
