@@ -8,12 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
-    protected Admin $admin;
-
-    public function __construct(Admin $admin)
-    {
-        $this->admin = $admin;
-    }
+    public function __construct(protected Admin $admin)
+    {}
 
     public function login(
         array $credentials
@@ -21,11 +17,14 @@ class AuthService
 
         return Auth::guard('admin')
             ->attempt($credentials);
+
+
     }
 
     public function register(
         array $data
-    ): Admin {
+    ) {
+        if(Auth::guard('admin')->check()){
 
         return $this->admin->create([
 
@@ -37,7 +36,11 @@ class AuthService
                 $data['password']
             ),
         ]);
+    } else {
+        return redirect()->route('admin.login');
     }
+    }
+
 
     public function logout(): void
     {

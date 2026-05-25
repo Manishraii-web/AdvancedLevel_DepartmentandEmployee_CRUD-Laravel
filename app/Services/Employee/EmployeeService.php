@@ -10,7 +10,7 @@ class EmployeeService
      * Create a new class instance.
      */
     public function __construct(protected Employee $employee) {}
-    //---------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------
     public function getall()
     {
         return $this->employee
@@ -24,7 +24,7 @@ class EmployeeService
             ->paginate(3);
     }
     //--------------------------------------------------------------------------------------------
-    public function store(array $data): Employee
+    public function store(array $data)
     {
         if (isset($data['image'])) {
             $data['image'] = $data['image']

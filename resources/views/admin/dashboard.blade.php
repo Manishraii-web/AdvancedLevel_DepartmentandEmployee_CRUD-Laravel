@@ -5,6 +5,7 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
 
     <h2>Admin Dashboard</h2>
+       <h3> Welcome, {{Auth::guard('admin')->user()->name}} </h3>
 
     <form method="POST"
           action="{{ route('admin.logout') }}">
