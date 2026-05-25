@@ -4,11 +4,12 @@ use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Auth;
 
 
- Route::get('/login', [AuthController::class,'showLogin'])->name('admin.login');
 
 
 Route::middleware('guest:admin')->group(function(){
+    Route::get('/login', [AuthController::class,'showLogin'])->name('admin.login');
 Route::post('/login',[AuthController::class,'login'])->name('admin.login.submit');
+
 
 
 });
