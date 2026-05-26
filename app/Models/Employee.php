@@ -12,7 +12,6 @@ class Employee extends Authenticatable
    use SoftDeletes;
 
    protected $fillable =[
-
     'firstname',
     'lastname',
     'email',

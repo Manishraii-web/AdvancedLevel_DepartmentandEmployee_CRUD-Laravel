@@ -11,15 +11,18 @@ use App\Services\Employee\AuthService;
 
 use App\Http\Requests\Auth\EmployeeLoginRequest;
 use App\Http\Requests\Auth\EmployeeRegisterRequest;
+use App\Services\Department\DepartmentService;
 
 class AuthController extends Controller
 {
     protected AuthService $authService;
+    protected DepartmentService $department;
 
     public function __construct(
-        AuthService $authService
+        AuthService $authService, DepartmentService $department
     ) {
         $this->authService = $authService;
+        $this->department = $department;
     }
 
     /**
@@ -35,7 +38,7 @@ class AuthController extends Controller
      */
     public function showRegister()
     {
-        $departments = Department::all();
+        $this->department->getAll();
 
         return view(
             'employee-auth.register',
