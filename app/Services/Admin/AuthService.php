@@ -11,13 +11,21 @@ class AuthService
     public function __construct(protected Admin $admin)
     {}
 
-    public function login(
-        array $credentials
-    ): bool {
+    public function login(array $credentials): bool
+    {
 
-        return Auth::guard('admin')
-            ->attempt($credentials);
+        if( Auth::guard('admin')
+            ->attempt($credentials)) {
+        $admin = Auth::guard('admin')->user();
+        $admin->update([
 
+            'last_login_at'=> now()
+        ]);
+
+        return true;
+        }
+
+        return false;
 
     }
 

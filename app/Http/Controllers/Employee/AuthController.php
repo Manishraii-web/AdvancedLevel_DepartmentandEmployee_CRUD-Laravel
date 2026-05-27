@@ -19,8 +19,7 @@ class AuthController extends Controller
     protected DepartmentService $department;
 
     public function __construct(
-        AuthService $authService, DepartmentService $department
-    ) {
+        AuthService $authService, DepartmentService $department) {
         $this->authService = $authService;
         $this->department = $department;
     }
@@ -38,7 +37,7 @@ class AuthController extends Controller
      */
     public function showRegister()
     {
-        $this->department->getAll();
+        $departments = Department::all();
 
         return view(
             'employee-auth.register',

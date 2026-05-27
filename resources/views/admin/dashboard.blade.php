@@ -55,7 +55,12 @@
         </div>
 
     </div>
-
+    <div class="mt-3">
+{{ Auth::guard('admin')
+    ->user()
+    ->last_login_at
+    ?->diffForHumans() }}
+    </div>
 </div>
 <a href="{{ route('employees.pending') }}"
    class="btn btn-warning mt-3">

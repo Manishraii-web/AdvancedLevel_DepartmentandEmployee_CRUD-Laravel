@@ -14,9 +14,15 @@ class Admin extends Authenticable
         'name',
         'email',
         'password',
+        'last_login_at',
     ];
 
     protected $hidden = [
         'password',
     ];
+    protected $casts = [
+
+    'last_login_at' => 'datetime',
+
+];
 }
