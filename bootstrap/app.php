@@ -25,9 +25,9 @@ return Application::configure(basePath: dirname(__DIR__))
 )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'admin.auth' => \App\Http\Middleware\AdminAuthenticate::class,
+            'admin' => \App\Http\Middleware\AdminAuthenticate::class,
 
-            'employee.auth' => \App\Http\Middleware\EmployeeAuthenticate::class
+            'employee' => \App\Http\Middleware\EmployeeAuthenticate::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

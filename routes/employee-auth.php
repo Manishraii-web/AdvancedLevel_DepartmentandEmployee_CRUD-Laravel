@@ -28,7 +28,7 @@ Route::post(
 
  });
 
-Route::middleware('employee.auth')->group(function() {
+Route::middleware('employee')->group(function() {
 Route::post(
     '/employee/logout',
     [AuthController::class,'logout']

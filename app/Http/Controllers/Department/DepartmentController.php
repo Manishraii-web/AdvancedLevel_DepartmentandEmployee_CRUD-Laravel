@@ -28,7 +28,7 @@ class DepartmentController extends Controller
         return redirect()->route('departmenty.index')->with('success','Congo');
 
     }
-    public function edit(Department $department){
+    public function edit(){
         return view('department.edit', compact('department'));
 
     }
@@ -40,8 +40,8 @@ class DepartmentController extends Controller
 
     }
 
-    public function destroy(Department $department){
-        $this->departmentService->delete($department);
+    public function destroy($id){
+        $this->departmentService->delete($id);
         return redirect()->route('departmenty.index')->with('success','delting sucess');
     }
 

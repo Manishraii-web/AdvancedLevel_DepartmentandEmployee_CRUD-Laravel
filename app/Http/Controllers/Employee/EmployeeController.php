@@ -4,16 +4,13 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Services\Employee\EmployeeService;
-use Illuminate\Http\Request;
-use App\Models\Department;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
-use App\Models\Employee;
-use Illuminate\Session\Store;
+use App\Services\Department\DepartmentService;
 
 class EmployeeController extends Controller
 {
-    public function __construct(protected EmployeeService $employeeService) {}
+    public function __construct(protected EmployeeService $employeeService ,protected DepartmentService $department) {}
     public function index()
     {
         $employees = $this->employeeService->getAll();
@@ -30,13 +27,13 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')->with('success', 'Employee created successfully');
     }
 
-    public function edit(Employee $employee){
-        $departments = Department::all();
+    public function edit(){
+        $departments = $this->department->getAll();
         return view('employee.edit', compact('employee', 'departments'));
     }
 
-    public function update(UpdateEmployeeRequest $request, Employee $employee){
-        $this->employeeService->update($employee, $request->validated());
+    public function update(UpdateEmployeeRequest $request, $id){
+        $this->employeeService->update($id, $request->validated());
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
     }
 
@@ -45,15 +42,16 @@ class EmployeeController extends Controller
         return view('employee.pending', compact('employees'));
     }
 
-    public function approve(Employee $employee){
-        $this->employeeService->approve($employee);
+    public function approve($id){
+        $this->employeeService->approve($id);
         return redirect()->back()->with('success','Employee approved.!!!');
     }
 
-    public function  destroy(Employee $employee){
-        $this->employeeService->delete($employee);
+    public function  destroy($id){
+        $this->employeeService->delete($id);
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
     }
+
 
     public function employeeDashboard(){
         $employees = $this->employeeService->getAll();

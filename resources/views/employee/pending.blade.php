@@ -53,7 +53,7 @@
                 <td>
 
                     <form method="POST"
-                          action="{{ route('employees.approve', $employee->id) }}">
+                          action="{{ route('admin.employees.approve', $employee->id) }}">
 
                         @csrf
                         @method('PUT')

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\EmployeeController;
 
-Route::middleware('admin.auth')->group(function() {
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function() {   //prefix and name for URL
 
       Route::get(
     '/employees/pending',

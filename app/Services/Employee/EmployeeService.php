@@ -33,8 +33,9 @@ class EmployeeService
         return $this->employee->create($data);
     }
     //--------------------------------------------------------------------------------------------
-    public function update(Employee $employee, array $data): bool
+    public function update($id, array $data)
     {
+        $employee= $this->employee->find($id);
         if (isset($data['image'])) {
             $data['image'] = $data['image']
                 ->store('employees', 'public');
@@ -42,17 +43,17 @@ class EmployeeService
         return $employee->update($data);
     }
     //--------------------------------------------------------------------------------------------
-    public function delete(Employee $employee): bool
+    public function delete($id)
     {
-        return $employee->delete();
+        return $this->employee->findOrFail($id)->delete();
     }
     //-------------------------------------------------------------------------------------------
     public function getPendingEmployees(){
         return Employee::where('is_approved',false)->get();
     }
     //---------------------------------------------------------------------------
-    public function approve(Employee $employee): bool {
-        return $employee->update([
+    public function approve($id) {
+        return $this->employee->findOrFail($id)->update([
             'is_approved' => true
         ]);
     }

@@ -28,7 +28,7 @@
 
             <h4>Employees</h4>
 
-            <a href="{{ route('employees.index') }}"
+            <a href="{{ route('admin.employees.index') }}"
                class="btn btn-primary mt-3">
 
                 Manage Employees
@@ -63,7 +63,7 @@
     ?->diffForHumans() }}
     </div>
 </div>
-<a href="{{ route('employees.pending') }}"
+<a href="{{ route('admin.employees.pending') }}"
    class="btn btn-warning mt-3">
 
     Pending Employee Requests

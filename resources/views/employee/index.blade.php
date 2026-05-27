@@ -74,7 +74,7 @@
 
                 <td>
 
-                    <a href="{{ route('employees.edit', $employee->id) }}"
+                    <a href="{{ route('admin.employees.edit', $employee->id) }}"
                        class="btn btn-warning btn-sm">
 
                         Edit
@@ -82,7 +82,7 @@
                     </a>
 
                     <form
-                        action="{{ route('employees.destroy', $employee->id) }}"
+                        action="{{ route('admin.employees.destroy', $employee->id) }}"
                         method="POST"
                         class="d-inline"
                     >

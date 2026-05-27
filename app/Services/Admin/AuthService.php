@@ -8,25 +8,23 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
-    public function __construct(protected Admin $admin)
-    {}
+    public function __construct(protected Admin $admin) {}
 
     public function login(array $credentials): bool
     {
 
-        if( Auth::guard('admin')
-            ->attempt($credentials)) {
-        $admin = Auth::guard('admin')->user();
-        $admin->update([
-
-            'last_login_at'=> now()
+        if (Auth::guard('admin')
+            ->attempt($credentials)
+        ) {
+            $admin = auth()->guard('admin')->user();
+        $data=([
+            'last_login_at'=>now()
         ]);
-
-        return true;
+        $admin->update($data);
+            return true;
         }
 
         return false;
-
     }
 
     public function register(
@@ -38,13 +36,12 @@ class AuthService
 
             'name' => $data['name'],
 
-            'email'=> $data['email'],
+            'email' => $data['email'],
 
             'password' => Hash::make(
                 $data['password']
             ),
         ]);
-
     }
 
 

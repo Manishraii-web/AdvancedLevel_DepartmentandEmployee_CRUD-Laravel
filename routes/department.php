@@ -7,7 +7,7 @@ use App\Http\Controllers\Department\DepartmentController;
 //     Route::resource('departments',DepartmentController::class);
 // });
 
-Route::middleware('admin.auth')->group(function () {
+Route::middleware('admin')->group(function () {
     Route::get('/departments', [DepartmentController::class, 'index'])->name('departmenty.index');
 
     // Create Form
