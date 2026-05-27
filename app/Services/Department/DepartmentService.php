@@ -2,6 +2,8 @@
 
 namespace App\Services\Department;
 use App\Models\Department;
+use Illuminate\Support\Facades\Cache;
+
 class DepartmentService
 {
     /**
@@ -18,18 +20,26 @@ class DepartmentService
         ->paginate(3);
     }
     //--------------------------------------------------------------------------------------------
-    public function store(array $data): Department {
+    public function store(array $data) {
+         Cache::forget('employee_departments');
         return $this->department->create($data);
     }
     //----------------------------------------------------------------------------------------
 
     public function update(Department $department, array $data): bool{
+          Cache::forget('employee_departments');
          return $department->update($data);
     }
 //--------------------------------------------------------------------------------------------
     public function delete(Department $department): bool {
+          Cache::forget('employee_departments');
         return $department->delete();
     }
+//------------------------------------------------------------------------------------
+    public function getDepartments(){
+        return Cache::remember('employee_departments', 3600, function () {
+          return Department::all();
 
+        });
+    }
 }
-

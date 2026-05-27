@@ -7,7 +7,7 @@ use App\Http\Requests\Department\StoreDepartmentRequest;
 use App\Http\Requests\Department\UpdateDepartmentRequest;
 use App\Models\Department;
 use App\Services\Department\DepartmentService;
-
+use Illuminate\Support\Facades\Cache;
 
 class DepartmentController extends Controller
 {
@@ -44,4 +44,6 @@ class DepartmentController extends Controller
         $this->departmentService->delete($department);
         return redirect()->route('departmenty.index')->with('success','delting sucess');
     }
+
+
 }
