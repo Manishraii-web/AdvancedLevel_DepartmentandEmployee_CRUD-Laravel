@@ -12,23 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('admins', function (Blueprint $table) {
-            //
-            $table->timestamp('last_login_at')->nullable();
+          $table->timestamp('last_login_at')->nullable();
         });
     }
-
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-          Schema::table('admins', function (Blueprint $table) {
-
+        Schema::table('admins', function (Blueprint $table) {
             $table->dropColumn('last_login_at');
-
         });
     }
-
 };

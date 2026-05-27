@@ -56,6 +56,7 @@
 
     </div>
     <div class="mt-3">
+         Last Login:
 {{ Auth::guard('admin')
     ->user()
     ->last_login_at
