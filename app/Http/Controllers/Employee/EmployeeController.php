@@ -48,10 +48,9 @@ class EmployeeController extends Controller
     }
 
     public function  destroy($id){
-        $this->employeeService->delete($id);
+        $this->employeeService->delete($);
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
     }
-
 
     public function employeeDashboard(){
         $employees = $this->employeeService->getAll();

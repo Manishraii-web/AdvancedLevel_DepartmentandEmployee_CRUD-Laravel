@@ -28,14 +28,15 @@ class DepartmentController extends Controller
         return redirect()->route('departmenty.index')->with('success','Congo');
 
     }
-    public function edit(){
+    public function edit($id){
+        $department = $this->departmentService->findById($id);
         return view('department.edit', compact('department'));
 
     }
 
-    public function update(UpdateDepartmentRequest $request, Department $department){
-        $this->departmentService->update($department, $request->validated());
-        return redirect()-> route('departmenty.index')->with('success','Sucessfully!!!');
+    public function update(UpdateDepartmentRequest $request,$id){
+        $this->departmentService->update($id, $request->validated());
+        return redirect()->route('departmenty.index')->with('success','Sucessfully!!!');
 
 
     }

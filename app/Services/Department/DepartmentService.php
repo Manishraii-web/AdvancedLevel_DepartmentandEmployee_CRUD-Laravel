@@ -26,14 +26,18 @@ class DepartmentService
     }
     //----------------------------------------------------------------------------------------
 
-    public function update(Department $department, array $data): bool{
+    public function update($id, array $data){
           Cache::forget('employee_departments');
-         return $department->update($data);
+         return $this->department->findOrFail($id)->update($data);
+    }
+    //--------------------------------------------------------------------------------------
+    public function findById($id){
+        return $this->department->findOrFail($id);
     }
 //--------------------------------------------------------------------------------------------
-    public function delete(Department $department): bool {
+    public function delete($id) {
           Cache::forget('employee_departments');
-        return $department->delete();
+        return $this->department->findOrFail($id)->delete();
     }
 //------------------------------------------------------------------------------------
     public function getDepartments(){
