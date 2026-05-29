@@ -23,6 +23,15 @@ class EmployeeService
             ->orderBy('created_at', 'asc')
             ->paginate(3);
     }
+    //-------------------------------------------------------------------------------------------------------------
+    public function getAllApproved()
+    {
+        return $this->employee
+            ->with('department')
+            ->where('is_approved', true)
+            ->orderBy('created_at', 'asc')
+            ->get();
+    }
     //--------------------------------------------------------------------------------------------
     public function store(array $data)
     {

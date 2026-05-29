@@ -54,7 +54,7 @@ class EmployeeController extends Controller
     }
 
     public function employeeDashboard(){
-        $employees = $this->employeeService->getAll();
+        $employees = $this->employeeService->getAllApproved();
         return view('employee.dashboard', compact('employees'));
     }
 }
