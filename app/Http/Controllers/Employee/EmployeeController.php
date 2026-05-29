@@ -7,6 +7,7 @@ use App\Services\Employee\EmployeeService;
 use App\Http\Requests\Employee\StoreEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Services\Department\DepartmentService;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
@@ -24,17 +25,17 @@ class EmployeeController extends Controller
 
     public function store(StoreEmployeeRequest $request){
         $this->employeeService->store($request->validated());
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully');
+        return redirect()->route('admin.employees.index')->with('success', 'Employee created successfully');
     }
 
-    public function edit(){
+    public function edit(Employee $employee){
         $departments = $this->department->getAll();
         return view('employee.edit', compact('employee', 'departments'));
     }
 
     public function update(UpdateEmployeeRequest $request, $id){
         $this->employeeService->update($id, $request->validated());
-        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
+        return redirect()->route('admin.employees.index')->with('success', 'Employee updated successfully');
     }
 
     public function pending(){
@@ -49,7 +50,7 @@ class EmployeeController extends Controller
 
     public function  destroy($id){
         $this->employeeService->delete($id);
-        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully');
+        return redirect()->route('admin.employees.index')->with('success', 'Employee deleted successfully');
     }
 
     public function employeeDashboard(){
