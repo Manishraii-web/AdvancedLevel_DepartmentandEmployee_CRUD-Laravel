@@ -25,6 +25,10 @@ class Employee extends Authenticatable
    ];
     protected $hidden = ['password',];
 
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
    public function department(){
     return $this->belongsTo(Department::class);
    }

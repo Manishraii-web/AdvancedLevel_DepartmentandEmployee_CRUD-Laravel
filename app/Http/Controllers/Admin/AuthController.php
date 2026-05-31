@@ -25,7 +25,6 @@ class AuthController extends Controller
                 return redirect()->route('admin.mfa.form');
             }
         return back()->withErrors(['email' => 'Invalid Credentials']);
-
     }
 
     public function register(RegisterRequest $request){
@@ -47,10 +46,6 @@ class AuthController extends Controller
     public function dashboard() {
         return view('admin.dashboard');
     }
-
-
-
-
 }
 
 

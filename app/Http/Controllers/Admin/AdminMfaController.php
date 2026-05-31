@@ -14,6 +14,7 @@ class AdminMfaController extends Controller
     }
 
     public function verify(Request $request){
+        
         $request->validate([
             'otp' => 'required|numeric'
         ]);
