@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Authenticable
+class Admin extends Authenticatable implements MustVerifyEmail
 {
     use SoftDeletes;
 
@@ -15,14 +15,24 @@ class Admin extends Authenticable
         'email',
         'password',
         'last_login_at',
+        'is_mfa_enabled',
+        'mfa_secret_key',
+        'otp_code',
+         'otp_expires_at'
     ];
 
     protected $hidden = [
         'password',
+        'mfa_secret_key',
+        'otp_code'
+
     ];
     protected $casts = [
 
     'last_login_at' => 'datetime',
+    'is_mfa_enabled' => 'boolean',
+    'otp_expires_at' => 'datetime',
+    'password' => 'hashed',
 
 ];
 }
