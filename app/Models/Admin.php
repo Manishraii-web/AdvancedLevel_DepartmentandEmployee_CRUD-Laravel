@@ -18,7 +18,7 @@ class Admin extends Authenticatable implements MustVerifyEmail
         'is_mfa_enabled',
         'mfa_secret_key',
         'otp_code',
-         'otp_expires_at'
+        'otp_expires_at'
     ];
 
     protected $hidden = [

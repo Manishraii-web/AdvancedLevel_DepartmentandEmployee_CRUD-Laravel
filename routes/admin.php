@@ -3,6 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminMfaController;
+
+
+Route::get('/admin/mfa', [AdminMfaController::class, 'show'])
+    ->name('admin.mfa.form');
+
+Route::post('/admin/mfa', [AdminMfaController::class, 'verify'])
+    ->name('admin.mfa.verify');
 
 
 

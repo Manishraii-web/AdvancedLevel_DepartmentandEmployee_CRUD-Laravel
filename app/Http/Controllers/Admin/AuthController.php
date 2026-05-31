@@ -19,10 +19,12 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request){
         $credentials = $request->only('email', 'password');
-        if($this->authService->login($credentials)){
-            return redirect()->route('admin.dashboardi');
-        }
-        return back()->withErrors(['email' => 'Invalid credentials']);
+
+            $result= $this->authService->login($credentials);
+            if($result == 'mfa_required'){
+                return redirect()->route('admin.mfa.form');
+            }
+        return back()->withErrors(['email' => 'Invalid Credentials']);
 
     }
 
