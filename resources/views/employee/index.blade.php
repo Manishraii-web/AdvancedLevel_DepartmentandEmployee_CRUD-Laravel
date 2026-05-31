@@ -6,13 +6,6 @@
 
     <h2>Employees</h2>
 
-    {{-- <a href="{{ route('employees.create') }}"
-       class="btn btn-primary">
-
-        Add Employee
-
-    </a> --}}
-
 </div>
 
 <table class="table table-bordered">
