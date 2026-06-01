@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     public function showRegister()
     {
-        $departments = Department::all();
+      $departments = $this->department->getAll();
 
         return view(
             'employee-auth.register',

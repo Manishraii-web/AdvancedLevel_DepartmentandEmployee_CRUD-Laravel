@@ -66,4 +66,8 @@ class EmployeeService
             'is_approved' => true
         ]);
     }
+    //---------------------------------------------------------------------------------
+    public function find($id) {
+        return Employee::findOrFail($id);
+    }
 }

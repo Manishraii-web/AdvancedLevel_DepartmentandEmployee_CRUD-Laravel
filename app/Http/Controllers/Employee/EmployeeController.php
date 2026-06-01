@@ -28,7 +28,8 @@ class EmployeeController extends Controller
         return redirect()->route('admin.employees.index')->with('success', 'Employee created successfully');
     }
 
-    public function edit(Employee $employee){
+    public function edit($id){
+        $employee = $this->employeeService->find($id);
         $departments = $this->department->getAll();
         return view('employee.edit', compact('employee', 'departments'));
     }

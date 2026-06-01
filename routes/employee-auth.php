@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\EmployeeController;
 
 
-Route::middleware('guest:employee')->prefix('user')->group(function() {
+
+Route::prefix('employee')->group(function() {
+Route::middleware('guest:employee')->group(function() {
 Route::get(
     '/employee/login',
     [AuthController::class,'showLogin']
@@ -39,4 +41,5 @@ Route::get(
     '/employee/dashboard', [EmployeeController::class,'employeeDashboard'])->name('employee.dashboard');
 
 
+});
 });
