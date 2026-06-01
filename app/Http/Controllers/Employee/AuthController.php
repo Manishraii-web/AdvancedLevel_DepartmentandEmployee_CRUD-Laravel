@@ -67,9 +67,7 @@ class AuthController extends Controller
     /**
      * Login Employee
      */
-    public function login(
-        EmployeeLoginRequest $request
-    ) {
+    public function login(EmployeeLoginRequest $request) {
 
         $employee = Employee::where(
             'email',
@@ -82,24 +80,15 @@ class AuthController extends Controller
                 'email' => 'Waiting for admin approval.'
             ]);
         }
+          $credentials = $request->only('email','password');
 
-        $credentials = $request->only(
-            'email',
-            'password'
-        );
-
-        if (
-            $this->authService->login($credentials)
-        ) {
-            return redirect()
-                ->route('employee.dashboard');
-
+        $result = $this->authService->login($credentials);
+        if($result == 'mfa_required') {
+            return redirect()->route('employee.mfa.form');
         }
-        return back()->withErrors([
+            return back()->withErrors(['email' => 'Invalid Credentials.'
+    ]);
 
-            'email' => 'Invalid credentials'
-
-        ]);
     }
 
     /**
