@@ -88,7 +88,7 @@
 
     <form method="POST" action="{{ route('employee.register.submit') }}" enctype="multipart/form-data">
 
-        @csrf
+        {{-- @csrf --}}
 
         <div class="row">
 
