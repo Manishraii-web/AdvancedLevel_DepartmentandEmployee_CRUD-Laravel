@@ -11,15 +11,17 @@ return Application::configure(basePath: dirname(__DIR__))
     then: function () {
     },
 )
-    ->withMiddleware(function (Middleware $middleware) {
+  ->withMiddleware(function (Middleware $middleware) {
 
+    $middleware->web(append: [
+        \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
+    ]);
 
-        $middleware->alias([
-            'admin' => \App\Http\Middleware\AdminAuthenticate::class,
-
-            'employee' => \App\Http\Middleware\EmployeeAuthenticate::class
-        ]);
-    })
+    $middleware->alias([
+        'admin' => \App\Http\Middleware\AdminAuthenticate::class,
+        'employee' => \App\Http\Middleware\EmployeeAuthenticate::class,
+    ]);
+})
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
