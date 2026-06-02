@@ -40,7 +40,7 @@ class AuthController extends Controller
 
     public function logout(){
         $this->authService->logout();
-        return redirect()->route('admin.login');
+        return view('home');
     }
 
     public function dashboard() {

@@ -12,9 +12,6 @@ Route::get('/admin/mfa', [AdminMfaController::class, 'show'])
 Route::post('/admin/mfa', [AdminMfaController::class, 'verify'])
     ->name('admin.mfa.verify');
 
-
-
-
 Route::middleware('guest:admin')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('admin.login');
     Route::post('/login', [AuthController::class, 'login'])->name('admin.login.submit');

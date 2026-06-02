@@ -56,12 +56,7 @@ class AuthController extends Controller
             $request->validated()
         );
 
-        return redirect()
-            ->route('employee.login')
-            ->with(
-                'success',
-                'Registration submitted. Wait for admin approval.'
-            );
+        return view('home')->with('success','Registration submitted. Wait for admin approval.' );
     }
 
     /**
@@ -97,7 +92,6 @@ class AuthController extends Controller
     public function logout()
     {
         $this->authService->logout();
-        return redirect()
-            ->route('employee.login');
+        return view('home');
     }
 }

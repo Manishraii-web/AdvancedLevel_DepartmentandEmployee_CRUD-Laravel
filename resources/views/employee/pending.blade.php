@@ -79,6 +79,7 @@
                     No Pending Employees
 
                 </td>
+                <a href="{{route('admin.dashboardi') }}"> Back </a>
 
             </tr>
 
