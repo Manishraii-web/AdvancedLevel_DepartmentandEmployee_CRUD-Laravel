@@ -6,10 +6,12 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens as SanctumHasApiTokens;
+use Laravel\Sanctums\HasApiTokens;
 
 class Employee extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes, SanctumHasApiTokens;
 
     protected $fillable = [
         'firstname',
