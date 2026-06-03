@@ -64,19 +64,13 @@ class AuthController extends Controller
      */
     public function login(EmployeeLoginRequest $request) {
 
-        $employee = Employee::where(
-            'email',
-            $request->email
-        )->first();
-
+        $employee = Employee::where('email',$request->email)->first();
         if ($employee && !$employee->is_approved) {
-
             return back()->withErrors([
                 'email' => 'Waiting for admin approval.'
             ]);
         }
-          $credentials = $request->only('email','password');
-
+        $credentials = $request->only('email','password');
         $result = $this->authService->login($credentials);
         if($result == 'mfa_required') {
             return redirect()->route('employee.mfa.form');

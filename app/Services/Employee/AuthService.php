@@ -56,7 +56,7 @@ class AuthService
        if(!Auth::guard('employee')->attempt($credentials)){
         return false;
        }
-        $employee = auth()->guard('employee')->user();
+        $employee = Auth::guard('employee')->user();
           $otp = rand(100000, 999999);
            $employee->update([
             'otp_code' => $otp,
@@ -67,6 +67,8 @@ class AuthService
         session(['mfa_employee_id' => $employee->id]);
         Auth::guard('employee')->logout();
        Mail::to($employee->email)->send(new EmployeeOtpMail($otp));
+
+
        return 'mfa_required';
 
     }

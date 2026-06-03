@@ -3,7 +3,7 @@
 use App\Http\Controllers\Employee\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employee\EmployeeController;
-use App\Http\Controllers\EmployeeMfaController;
+use App\Http\Controllers\Employee\EmployeeMfaController;
 
 Route::get('/employee/mfa', [EmployeeMfaController::class, 'show']) ->name('employee.mfa.form');
 Route::post('/employee/mfa', [EmployeeMfaController::class, 'verify']) ->name('employee.mfa.verify');

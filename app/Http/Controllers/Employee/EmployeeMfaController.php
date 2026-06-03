@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employee;
 
 use App\Models\Employee;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +19,11 @@ class EmployeeMfaController extends Controller
     ]);
 
      $employeeId = session('mfa_employee_id');
-
     if(!$employeeId) {
         return redirect()->route('employee.login');
     }
 
     $employee = Employee::find($employeeId);
-
     if(!$employee){
         return redirect()->route('employee.login');
     }
@@ -36,7 +35,6 @@ class EmployeeMfaController extends Controller
     now()->greaterThan($employee->otp_expires_at)){
       return back()->withErrors(['otp'=> 'Already Expired']);
     }
-
     $employee->update([
         'otp_code'=>null,
         'otp_expires_at' =>null,
