@@ -26,7 +26,7 @@ class StoreEmployeeRequest extends FormRequest
         return [
            "firstname" => "required|string|max:255",
            "lastname" => "required|string|max:255",
-            'email' =>  ['required', 'email'],
+            'email' =>  ['required', 'email','unique:employees,email'],
             'phone' => "required|string|max:20",
             'salary' => "required|numeric|min:0",
             'department_id'=> "required|exists:departments,id",

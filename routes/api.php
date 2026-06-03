@@ -17,3 +17,4 @@ Route::get('/test', function(){
 
  Route::get('/employees', [EmployeeApiController::class,'index']);
 
+Route::apiResource('/employees',EmployeeApiController::class);
