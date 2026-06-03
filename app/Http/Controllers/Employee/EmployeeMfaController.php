@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class EmployeeMfaController extends Controller
 {
+    //------------------------------------------------------------------
    public function show(){
     return view('employee-auth.mfa');
    }
-
+//-----------------------------------------------------------------------------------
    public function verify(Request $request){
     $request->validate([
         'otp' => 'required|numeric'

@@ -12,7 +12,7 @@ class EmployeeApiController extends Controller
    public function __construct(protected EmployeeService $employeeService){}
 
    public function index(){
-    $employee = $this->employeeService->getAll();
+    $employee = $this->employeeService->getall();
 
     return response()->json([
         'success' => true,

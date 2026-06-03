@@ -20,7 +20,14 @@ class EmployeeService
                      ->orwhere('lastname', 'like', '%' . request('search'). '%')
                     ->orWhere('email', 'like', '%' . request('search') . '%');
             })
-            ->orderBy('created_at', 'asc')
+            ->when(request('department_id'), function ($query){
+                $query->where('department_id', request('department_id'));
+            })
+            ->when(
+                request('sort') == 'oldest',
+                fn($query) =>$query->orderBy('created_at', 'asc'),
+                fn($query) =>$query->orderBy('created_at', 'desc')
+            )
             ->paginate(3);
     }
     //-------------------------------------------------------------------------------------------------------------
