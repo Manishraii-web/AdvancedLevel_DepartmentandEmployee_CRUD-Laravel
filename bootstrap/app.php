@@ -18,9 +18,6 @@ return Application::configure(basePath: dirname(__DIR__))
   $middleware->api(prepend: [
     EnsureFrontendRequestsAreStateful::class,
   ]);
-    // $middleware->web(append: [
-    //     \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class,
-    // ]);
 
     $middleware->alias([
         'admin' => \App\Http\Middleware\AdminAuthenticate::class,
@@ -28,5 +25,5 @@ return Application::configure(basePath: dirname(__DIR__))
     ]);
 })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+       
     })->create();
