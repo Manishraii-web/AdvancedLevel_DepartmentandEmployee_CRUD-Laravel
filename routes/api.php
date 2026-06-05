@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 Route::post('/login', [AuthApiController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function(){
    Route::apiResource('/employees',EmployeeApiController::class);
+   Route::post('/logout',[AuthApiController::class,'logout']);
 
 });
 
