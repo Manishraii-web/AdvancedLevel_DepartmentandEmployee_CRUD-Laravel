@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\AdminResource\AdminResource;
 use App\Models\Admin;
 use App\Services\Admin\AuthService;
 use Illuminate\Http\Request;
@@ -26,8 +27,9 @@ class AdminApiController extends Controller
     $token = $admin->createToken('admin-api-token')->plainTextToken;
 
     return response()->json([
+        'success' => true,
         'token' => $token,
-        'admin' => $admin
+        'admin' => new AdminResource($admin)
     ]);
 
    }
