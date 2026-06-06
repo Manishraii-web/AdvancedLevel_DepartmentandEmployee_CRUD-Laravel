@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\EmployeeLoginRequest;
+use App\Http\Resources\EmployeeResource\EmployeeResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Employee;
 
 class AuthApiController extends Controller
 {
-   public function login(Request $request){
+   public function login(EmployeeLoginRequest $request){
 
-   $credentials = $request->validate([
-    'email'=> 'required|email',
-    'password' => 'required'
-   ]);
+   $credentials = $request->validated();
+
    if(!Auth::guard('employee')->attempt($credentials)){
     return response()->json([
         'success' => false,
@@ -30,7 +30,7 @@ class AuthApiController extends Controller
     'success' => true,
     'message' => 'Login successful',
     'token' => $token,
-    'employee' => $employee
+    'employee' => new EmployeeResource($employee)
    ]);
 
    }

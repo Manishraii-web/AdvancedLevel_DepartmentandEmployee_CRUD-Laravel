@@ -23,8 +23,9 @@ class EmployeeApiController extends Controller
         'data'=> EmployeeResource::collection($employee)
     ]);
    }
+
     public function find($id){
-        return $this->employee->with('department')->findOrFail($id);
+        return $this->$employee->with('department')->findOrFail($id);
     }
 
     public function show($id){
