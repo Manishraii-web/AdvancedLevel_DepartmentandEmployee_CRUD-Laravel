@@ -13,6 +13,7 @@ class EmployeeApiController extends Controller
 {
    public function __construct(protected EmployeeService $employeeService){}
 
+
    public function index(){
     $employee = $this->employeeService->getall();
 

@@ -21,3 +21,15 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
 
+Route::prefix('admin')->group(function(){
+
+    Route::post('/login',[AdminApiController::class,'index']);
+    
+    Route::middleware('authh-sanctum')->group(function(){
+        Route::get('/profile', function(Request $request)){
+            return $request->user();
+    })
+
+
+})
+

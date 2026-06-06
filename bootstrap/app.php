@@ -15,9 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
 )
   ->withMiddleware(function (Middleware $middleware) {
 
-  $middleware->api(prepend: [
-    EnsureFrontendRequestsAreStateful::class,
-  ]);
+//   $middleware->api(prepend: [
+//     EnsureFrontendRequestsAreStateful::class,
+//   ]);
 
     $middleware->alias([
         'admin' => \App\Http\Middleware\AdminAuthenticate::class,
@@ -25,5 +25,5 @@ return Application::configure(basePath: dirname(__DIR__))
     ]);
 })
     ->withExceptions(function (Exceptions $exceptions): void {
-       
+
     })->create();
