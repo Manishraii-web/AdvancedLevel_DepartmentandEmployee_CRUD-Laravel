@@ -3,33 +3,22 @@
 use App\Http\Controllers\Api\EmployeeApiController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\Admin\AdminApiController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Employee;
-use Illuminate\Support\Facades\Auth;
-
-// Route::get('/test', function(){
-//     return response()->json([
-//         'success'=> true,
-//         'message'=> 'API is working fine'
-//     ]);
-// });
 
 Route::post('/login', [AuthApiController::class, 'login']);
-Route::middleware('auth:sanctum')->group(function(){
-   Route::apiResource('/employees',EmployeeApiController::class);
-   Route::post('/logout',[AuthApiController::class,'logout']);
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('/employees', EmployeeApiController::class);
+    Route::post('/logout', [AuthApiController::class, 'logout']);
 });
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->group(function () {
 
-    Route::post('/login',[AdminApiController::class,'index']);
-    
-    Route::middleware('authh-sanctum')->group(function(){
-        Route::get('/profile', function(Request $request)){
+    Route::post('/login', [AdminApiController::class, 'login']);
+
+    Route::middleware('auth-sanctum')->group(function () {
+        Route::get('/profile', function (Request $request) {
             return $request->user();
-    })
-
-
-})
-
+        });
+    });
+});

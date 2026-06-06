@@ -7,12 +7,12 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Admin;
 use App\Services\Admin\AuthService;
 use Illuminate\Http\Request;
-use Illuminate\Suppport\Facades\Hash;
+use Illuminate\Support\Facades\Hash;
 
 
 class AdminApiController extends Controller
 {
-   public function index(LoginRequest $request){
+   public function login(LoginRequest $request){
     $credentials = $request->validated();
 
        $admin= Admin::where('email', $credentials['email'])->first();
