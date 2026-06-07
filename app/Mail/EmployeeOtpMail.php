@@ -21,7 +21,8 @@ class EmployeeOtpMail extends Mailable
         $this->otp = $otp;
     }
     public function build(){
-        return $this->subject('Employee OTP')->view('emails.employee-otp');
+        return $this->subject('Employee OTP')->view('emails.employee-otp')
+        ->with(['opt' => $this->otp]);
     }
 
 

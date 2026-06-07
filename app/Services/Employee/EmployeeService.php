@@ -51,7 +51,8 @@ class EmployeeService
     //--------------------------------------------------------------------------------------------
     public function update($id, array $data)
     {
-        $employee= $this->employee->find($id);
+        $employee= $this->employee->findOrfail($id);
+
         if (isset($data['image'])) {
             $data['image'] = $data['image']
                 ->store('employees', 'public');

@@ -18,11 +18,6 @@ class EmployeeController extends Controller
         return view('employee.index', compact('employees'));
     }
 
-    // public function create(){
-    //     $departments = Department::all();
-    //     return view('employee.create', compact('departments'));
-    // }
-
     public function store(StoreEmployeeRequest $request){
         $this->employeeService->store($request->validated());
         return redirect()->route('admin.employees.index')->with('success', 'Employee created successfully');

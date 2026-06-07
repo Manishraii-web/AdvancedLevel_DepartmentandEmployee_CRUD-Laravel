@@ -21,6 +21,7 @@ class AuthService
             $admin = auth()->guard('admin')->user();
             session(['mfa_admin_id' => $admin->id]);  //for storing temperorary session idd
             Auth::guard('admin')->logout();  //logout immediatley impo for mfa auth
+            $admin = Admin::find($admin->id);
             $otp = rand(100000, 999999);
 
              $admin->update([

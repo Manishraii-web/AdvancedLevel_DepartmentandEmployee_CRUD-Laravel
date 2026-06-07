@@ -51,12 +51,16 @@ class AuthService
     /**
      * Login Employee
      */
-    public function login(array $credentials): string|bool {
+    public function login( array $credentials): string|bool {
+
 
        if(!Auth::guard('employee')->attempt($credentials)){
         return false;
        }
+
         $employee = Auth::guard('employee')->user();
+        $employee = Employee::find($employee->id);
+
           $otp = rand(100000, 999999);
            $employee->update([
             'otp_code' => $otp,
