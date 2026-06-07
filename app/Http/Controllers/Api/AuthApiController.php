@@ -24,7 +24,7 @@ class AuthApiController extends Controller
 
    $employee = Auth::guard('employee')->user();
 
-   $token =   $employee->createToken('employee-api-token')->plainTextToken;
+   $token =   $employee->createToken('employee-api-token',['employee'])->plainTextToken;
 
    return response()->json([
     'success' => true,

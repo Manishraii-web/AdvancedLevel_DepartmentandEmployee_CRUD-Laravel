@@ -22,8 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
     $middleware->alias([
         'admin' => \App\Http\Middleware\AdminAuthenticate::class,
         'employee' => \App\Http\Middleware\EmployeeAuthenticate::class,
+         'api.logger' => \App\Http\Middleware\ApiLogger::class,
     ]);
 })
+
     ->withExceptions(function (Exceptions $exceptions): void {
 
     })->create();

@@ -24,7 +24,7 @@ class AdminApiController extends Controller
        }
 
 
-    $token = $admin->createToken('admin-api-token')->plainTextToken;
+    $token = $admin->createToken('admin-api-token',['admin'])->plainTextToken;
 
     return response()->json([
         'success' => true,
