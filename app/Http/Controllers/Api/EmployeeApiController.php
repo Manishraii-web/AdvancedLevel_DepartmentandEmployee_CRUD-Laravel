@@ -25,7 +25,7 @@ class EmployeeApiController extends Controller
    }
 
     public function find($id){
-        return $this->$employee->with('department')->findOrFail($id);
+        return $this->employeeService->find($id);
     }
 
     public function show($id){
