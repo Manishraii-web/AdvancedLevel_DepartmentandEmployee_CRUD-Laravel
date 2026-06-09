@@ -71,6 +71,7 @@ class AuthController extends Controller
             ]);
         }
         $credentials = $request->only('email','password');
+
         $result = $this->authService->login($credentials);
         if($result == 'mfa_required') {
             return redirect()->route('employee.mfa.form');
@@ -81,7 +82,9 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout
+     * $employee = Employee::where('email, $request->email)->first();
+     * if($employee && !$employee -> is_approved){
+     * }
      */
     public function logout()
     {
