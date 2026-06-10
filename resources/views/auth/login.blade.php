@@ -17,7 +17,7 @@
                 <form method="POST"
                       action="{{ route('admin.login.submit') }}">
 
-                 {{-- @csrf    --}}
+                 @csrf
 
                     <div class="mb-3">
 

@@ -1,5 +1,5 @@
 <form method="POST" action="{{ route('admin.mfa.verify') }}">
-    {{-- @csrf --}}
+    @csrf
 
     <h2>Enter OTP</h2>
 
