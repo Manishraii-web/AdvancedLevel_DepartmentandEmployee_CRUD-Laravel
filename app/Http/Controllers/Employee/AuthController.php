@@ -48,9 +48,7 @@ class AuthController extends Controller
     /**
      * Register Employee
      */
-    public function register(
-        EmployeeRegisterRequest $request
-    ) {
+    public function register(EmployeeRegisterRequest $request) {
 
         $this->authService->register(
             $request->validated()

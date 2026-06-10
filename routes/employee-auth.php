@@ -11,22 +11,22 @@ Route::post('/employee/mfa', [EmployeeMfaController::class, 'verify']) ->name('e
 Route::prefix('employee')->group(function() {
 Route::middleware('guest:employee')->group(function() {
 Route::get(
-    '/employee/login',
+    '/login',
     [AuthController::class,'showLogin']
 )->name('employee.login');
 
 Route::post(
-    '/employee/login',
+    '/login',
     [AuthController::class,'login']
 )->name('employee.login.submit');
 
 Route::get(
-    '/employee/register',
+    '/register',
     [AuthController::class,'showRegister']
 )->name('employee.register');
 
 Route::post(
-    '/employee/register',
+    '/register',
     [AuthController::class,'register']
 )->name('employee.register.submit');
 
@@ -34,13 +34,13 @@ Route::post(
 
 Route::middleware('employee')->group(function() {
 Route::post(
-    '/employee/logout',
+    '/logout',
     [AuthController::class,'logout']
 )->name('employee.logout');
 
 
 Route::get(
-    '/employee/dashboard', [EmployeeController::class,'employeeDashboard'])->name('employee.dashboard');
+    '/dashboard', [EmployeeController::class,'employeeDashboard'])->name('employee.dashboard');
 
 
 });
