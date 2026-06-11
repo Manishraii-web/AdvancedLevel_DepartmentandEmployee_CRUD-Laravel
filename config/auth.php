@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\User;
 use App\Models\Employee;
 use App\Models\Admin;
@@ -39,20 +40,20 @@ return [
     */
 
     'guards' => [
-        
-        'web' => [
-        'driver' => 'session',
-        'provider' => 'admins',
-    ],
 
-    'admin' => [
-        'driver' => 'session',
-        'provider' => 'admins',
-    ],
-    'employee' => [
-        'driver' => 'session',
-        'provider' => 'employees',
-    ],
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
 
     ],
 
@@ -75,14 +76,14 @@ return [
 
     'providers' => [
 
-        'admins'=>[
-        'driver'=> 'eloquent',
-        'model' => Admin::class,
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class,
         ],
 
-        'employees' =>[
-            'driver'=>'eloquent',
-            'model'=>Employee::class,
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => Employee::class,
         ],
 
         'users' => [
@@ -111,25 +112,26 @@ return [
     */
 
     'passwords' => [
+        
         'admins' => [
-    'provider' => 'admins',
-    'table' => env(
-        'AUTH_PASSWORD_RESET_TOKEN_TABLE',
-        'password_reset_tokens'
-    ),
-    'expire' => 60,
-    'throttle' => 60,
-],
+            'provider' => 'admins',
+            'table' => env(
+                'AUTH_PASSWORD_RESET_TOKEN_TABLE',
+                'password_reset_tokens'
+            ),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
 
-'employees' => [
-    'provider' => 'employees',
-    'table' => env(
-        'AUTH_PASSWORD_RESET_TOKEN_TABLE',
-        'password_reset_tokens'
-    ),
-    'expire' => 60,
-    'throttle' => 60,
-],
+        'employees' => [
+            'provider' => 'employees',
+            'table' => env(
+                'AUTH_PASSWORD_RESET_TOKEN_TABLE',
+                'password_reset_tokens'
+            ),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
 
